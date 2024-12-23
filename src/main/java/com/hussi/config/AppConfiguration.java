@@ -1,8 +1,7 @@
 package com.hussi.config;
 
-import com.hussi.domain.handler.BusinessRuleHandler;
-import com.hussi.domain.handler.MandatoryBusinessRuleHandler;
-import com.hussi.domain.handler.OptionalBusinessRuleHandler;
+import com.hussi.domain.businessRules.*;
+import com.hussi.domain.pojo.DecoderPojo;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -11,68 +10,71 @@ import java.util.List;
 @Configuration
 public class AppConfiguration {
 
-    // Mandatory Business Rule Handlers
     @Bean
-    public MandatoryBusinessRuleHandler trimEndsHandler() {
-        return input -> BusinessRuleUtility.trimEnds.apply(input);
-    }
-
-    @Bean
-    public MandatoryBusinessRuleHandler removeSpecialCharactersHandler() {
-        return input -> BusinessRuleUtility.removeSpecialCharacters.apply(input);
-    }
-
-    @Bean
-    public MandatoryBusinessRuleHandler enforceLengthHandler() {
-        return input -> BusinessRuleUtility.enforceLength.apply(input);
-    }
-
-    // Optional Business Rule Handlers
-    @Bean
-    public OptionalBusinessRuleHandler groupAHandler() {
-        return new OptionalBusinessRuleHandler() {
+    public MandatoryBusinessRule mandatoryRule1() {
+        return new MandatoryBusinessRule() {
             @Override
-            public boolean shouldApply(String input) {
-                return BusinessRuleUtility.shouldApplyGroupA.apply(input);
-            }
-
-            @Override
-            public String apply(String input) {
-                return BusinessRuleUtility.applyGroupA.apply(input);
+            public void apply(DecoderPojo pojo) {
+                System.out.println("Mandatory Rule 1 executed");
             }
         };
     }
 
     @Bean
-    public OptionalBusinessRuleHandler groupBHandler() {
-        return new OptionalBusinessRuleHandler() {
+    public MandatoryBusinessRule mandatoryRule2() {
+        return new MandatoryBusinessRule() {
             @Override
-            public boolean shouldApply(String input) {
-                return BusinessRuleUtility.shouldApplyGroupB.apply(input);
-            }
-
-            @Override
-            public String apply(String input) {
-                return BusinessRuleUtility.applyGroupB.apply(input);
+            public void apply(DecoderPojo pojo) {
+                System.out.println("Mandatory Rule 2 executed");
             }
         };
     }
 
-    // Inject all business rule handlers as a list
     @Bean
-    public List<BusinessRuleHandler> businessRuleHandlers(
-            MandatoryBusinessRuleHandler trimEndsHandler,
-            MandatoryBusinessRuleHandler removeSpecialCharactersHandler,
-            MandatoryBusinessRuleHandler enforceLengthHandler,
-            OptionalBusinessRuleHandler groupAHandler,
-            OptionalBusinessRuleHandler groupBHandler
-    ) {
-        return List.of(
-                trimEndsHandler,
-                removeSpecialCharactersHandler,
-                enforceLengthHandler,
-                groupAHandler,
-                groupBHandler
-        );
+    public OptionalBusinessRule optionalRule1() {
+        return new OptionalBusinessRule() {
+            @Override
+            public void apply(DecoderPojo pojo) {
+                System.out.println("Optional Rule 1 executed");
+            }
+
+            @Override
+            public boolean shouldApply(DecoderPojo pojo) {
+                System.out.println("Optional Rule 1 check executed");
+                return true;
+            }
+        };
+    }
+
+    @Bean
+    public OptionalBusinessRule optionalRule2() {
+        return new OptionalBusinessRule() {
+            @Override
+            public void apply(DecoderPojo pojo) {
+                System.out.println("Optional Rule 2 executed");
+            }
+
+            @Override
+            public boolean shouldApply(DecoderPojo pojo) {
+                System.out.println("Optional Rule 2 check executed");
+                return true;
+            }
+        };
+    }
+
+    @Bean
+    public OptionalBusinessRule optionalRule3() {
+        return new OptionalBusinessRule() {
+            @Override
+            public void apply(DecoderPojo pojo) {
+                System.out.println("Optional Rule 3 executed");
+            }
+
+            @Override
+            public boolean shouldApply(DecoderPojo pojo) {
+                System.out.println("Optional Rule 3 check executed");
+                return false;
+            }
+        };
     }
 }
