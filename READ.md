@@ -69,3 +69,8 @@ Does not interact directly with the presentation or application layers.
 12. Response DTO -> 	        **Presentation**    -> Represents the data sent to the client in a response.
 13. Controller -> 	            **Presentation**    -> Handles incoming requests, delegates to the application layer, and formats the response.
 14. View -> 	                **Presentation**    -> Handles the presentation of data to the user (e.g., HTML, JSON).
+
+| Header 1 | Header 2 | Header 3 |
+|----------|----------|----------|
+| Row 1    | Data 1   | Data 2   |
+| Row 2    | Data 3   | Data 4   |
