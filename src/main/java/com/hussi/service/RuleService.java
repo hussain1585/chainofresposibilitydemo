@@ -1,35 +1,33 @@
 package com.hussi.service;
 
-import com.hussi.domain.handler.BusinessRuleHandler;
-import com.hussi.domain.handler.MandatoryBusinessRuleHandler;
-import com.hussi.domain.handler.OptionalBusinessRuleHandler;
+import com.hussi.domain.businessRules.BusinessRule;
+import com.hussi.domain.businessRules.OptionalBusinessRule;
+import com.hussi.domain.pojo.DecoderPojo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
 public class RuleService {
-    private final List<BusinessRuleHandler> businessRuleHandlers;
-    public String decode(String input) {
-        String result = input;
+    private final List<BusinessRule> businessRules;
 
-        for (BusinessRuleHandler handler : businessRuleHandlers) {
-            if (handler instanceof OptionalBusinessRuleHandler optionalHandler) {
-                if (optionalHandler.shouldApply(result)) {
-                    result = optionalHandler.apply(result);
-                }
-            } else if(handler instanceof MandatoryBusinessRuleHandler mandatoryBusinessRuleHandler) {
-                result = mandatoryBusinessRuleHandler.apply(result);
-            }
-            else {
+    public ResponseEntity<DecoderPojo> decode(String input) {
+        DecoderPojo decoderPojo = DecoderPojo.builder().name(input).build();
+
+        for (BusinessRule rule : businessRules) {
+            if (rule instanceof OptionalBusinessRule optionalRule && !optionalRule.check(input, decoderPojo)) {
+                continue;
+            } else {
                 log.info("something fishy just happend");
             }
+            rule.apply(decoderPojo);
         }
-
-        return result;
+        return ResponseEntity.ok(decoderPojo);
     }
 }
