@@ -70,7 +70,18 @@ Does not interact directly with the presentation or application layers.
 13. Controller -> 	            **Presentation**    -> Handles incoming requests, delegates to the application layer, and formats the response.
 14. View -> 	                **Presentation**    -> Handles the presentation of data to the user (e.g., HTML, JSON).
 
-| Header 1 | Header 2 | Header 3 |
-|----------|----------|----------|
-| Row 1    | Data 1   | Data 2   |
-| Row 2    | Data 3   | Data 4   |
+| S.N.| Class Name | Layer | Explanation |
+| 1 |----------|----------|----------|
+| 2 | Repository Impl    | Infrastructure   | Provides the concrete implementation of data access (e.g., using databases).   |
+| 3 | Entity    | Domain   | Represents core business objects with their attributes and behavior.   |
+| 4 | Value Object    | Domain   | Immutable objects representing a single concept (e.g., Money, Address).   |
+| 5 | Aggregates    | Domain   | A cluster of associated objects treated as a single unit for data consistency.   |
+| 6 | Domain Service    | Domain   | Contains business logic that doesn't belong to any specific entity.   |
+| 7 | Repository Interface    | Domain   | Defines the contract for data access.   |
+| 8 | Use Case Interface    | Application   | Defines the business operations that can be performed on the system.   |
+| 9 | Use Case Implementation    | Application   | Implements the business logic for a specific use case, coordinating the flow of data and interactions with the domain layer.   |
+| 10 | Mapper (DTO <-> Domain)    | Application   | Transforms data between DTOs and domain objects.   |
+| 11 | Request DTO    | Presentation   | Represents the data received from the client in a request.   |
+| 12 | Response DTO    | Presentation   | Represents the data sent to the client in a response.   |
+| 13 | Controller    | Presentation   | Handles incoming requests, delegates to the application layer, and formats the response.   |
+| 14 | View    | Presentation   | Handles the presentation of data to the user (e.g., HTML, JSON).   |
