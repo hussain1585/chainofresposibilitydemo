@@ -28,6 +28,11 @@ dependencies {
 
     implementation 'javax.validation:validation-api:2.0.1.Final'
 
+    //    SWAGGER
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.7.0'
+    //    SWAGGER
+
+
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
