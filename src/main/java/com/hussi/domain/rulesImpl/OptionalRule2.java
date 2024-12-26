@@ -6,16 +6,15 @@ import com.hussi.domain.DecodedPan;
 import org.springframework.stereotype.Component;
 
 import java.util.function.Predicate;
+
 @Component
 public class OptionalRule2 extends OptionalBusinessRule {
 
-    @Override
-    protected DecodedPan apply(String pan, DecodedPan decodedPan) {
-        return null;
-    }
+    public Predicate<String> predicate = pan -> null != pan;
 
     @Override
-    protected boolean check(Predicate<DecodedPan> predicate) {
-        return true;
+    protected DecodedPan apply(String pan) {
+        System.out.println("Optional Rule 2 is applied");
+        return null;
     }
 }

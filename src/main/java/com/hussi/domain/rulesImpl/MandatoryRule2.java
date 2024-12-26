@@ -7,7 +7,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class MandatoryRule2 extends MandatoryBusinessRule {
     @Override
-    protected DecodedPan apply(String pan, DecodedPan decodedPan) {
+    protected DecodedPan apply(String pan) {
+        System.out.println("Mandatory Rule 2 is applied");
         return null;
     }
 }

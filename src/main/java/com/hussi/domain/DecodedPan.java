@@ -6,6 +6,6 @@ import lombok.Data;
 @Data
 @Builder
 public class DecodedPan {
-    private String input;
+    private String pan;
     private String decodedResult;
 }
