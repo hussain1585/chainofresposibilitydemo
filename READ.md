@@ -72,16 +72,16 @@ Does not interact directly with the presentation or application layers.
 
 | SN  | Class Name | Layer | Explanation |
 |-----|----------|----------|----------|
-| 1   | Repository Impl    | Infrastructure   | Provides the concrete implementation of data access (e.g., using databases).   |
-| 2   | Entity                  | Domain   | Represents core business objects with their attributes and behavior.   |
-| 3   | Value Object            | Domain   | Immutable objects representing a single concept (e.g., Money, Address).   |
-| 4   | Aggregates              | Domain   | A cluster of associated objects treated as a single unit for data consistency.   |
-| 5   | Domain Service          | Domain   | Contains business logic that doesn't belong to any specific entity.   |
-| 6   | Repository Interface    | Domain   | Defines the contract for data access.   |
-| 7   | Use Case Interface      | Application   | Defines the business operations that can be performed on the system.   |
-| 8   | Use Case Implementation | Application   | Implements the business logic for a specific use case, coordinating the flow of data and interactions with the domain layer.   |
-| 9   | Mapper (DTO <-> Domain) | Application   | Transforms data between DTOs and domain objects.   |
-| 10  | Request DTO             | Presentation   | Represents the data received from the client in a request.   |
-| 11  | Response DTO            | Presentation   | Represents the data sent to the client in a response.   |
-| 12  | Controller              | Presentation   | Handles incoming requests, delegates to the application layer, and formats the response.   |
-| 13  | View                    | Presentation   | Handles the presentation of data to the user (e.g., HTML, JSON).   |
+| 1   | Repository Impl    | **Infrastructure**   | Provides the concrete implementation of data access (e.g., using databases).   |
+| 2   | Entity                  | **Domain**   | Represents core business objects with their attributes and behavior.   |
+| 3   | Value Object            | **Domain**   | Immutable objects representing a single concept (e.g., Money, Address).   |
+| 4   | Aggregates              | **Domain**   | A cluster of associated objects treated as a single unit for data consistency.   |
+| 5   | Domain Service          | **Domain**   | Contains business logic that doesn't belong to any specific entity.   |
+| 6   | Repository Interface    | **Domain**   | Defines the contract for data access.   |
+| 7   | Use Case Interface      | **Application**   | Defines the business operations that can be performed on the system.   |
+| 8   | Use Case Implementation | **Application**   | Implements the business logic for a specific use case, coordinating the flow of data and interactions with the domain layer.   |
+| 9   | Mapper (DTO <-> Domain) | **Application**   | Transforms data between DTOs and domain objects.   |
+| 10  | Request DTO             | **Presentation**   | Represents the data received from the client in a request.   |
+| 11  | Response DTO            | **Presentation**   | Represents the data sent to the client in a response.   |
+| 12  | Controller              | **Presentation**   | Handles incoming requests, delegates to the application layer, and formats the response.   |
+| 13  | View                    | **Presentation**   | Handles the presentation of data to the user (e.g., HTML, JSON).   |
