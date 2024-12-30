@@ -17,4 +17,9 @@ public class OptionalRule2 extends OptionalBusinessRule {
         System.out.println("Optional Rule 2 is applied");
         return null;
     }
+
+    @Override
+    protected Predicate<String> getPredicate() {
+        return predicate;
+    }
 }

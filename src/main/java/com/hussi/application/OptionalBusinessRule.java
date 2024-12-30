@@ -6,13 +6,10 @@ import java.util.function.Predicate;
 
 public abstract class OptionalBusinessRule extends BusinessRule {
 
-    public Predicate<String> predicate;
-
-
-    //protected abstract boolean check(String pan);
+    protected abstract Predicate<String> getPredicate();
 
     protected boolean check(String pan) {
-        System.out.println("checking the predicate");
-        return predicate.test(pan);
+        System.out.println("checking the predicate for pan : " + pan);
+        return getPredicate().test(pan);
     }
 }

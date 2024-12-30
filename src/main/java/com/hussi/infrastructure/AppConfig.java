@@ -5,11 +5,13 @@ import com.hussi.domain.rulesImpl.MandatoryRule1;
 import com.hussi.domain.rulesImpl.MandatoryRule2;
 import com.hussi.domain.rulesImpl.OptionalRule1;
 import com.hussi.domain.rulesImpl.OptionalRule2;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.function.Predicate;
 
 @Configuration
 public class AppConfig {
@@ -28,4 +30,10 @@ public class AppConfig {
 //        businessRules.add(o2);
 //        return businessRules;
 //    }
+
+    @Bean(name = "optional1")
+    public Predicate<String> getOptional1Predicate() {
+        System.out.println("predicate to check if the input string length is equal to eight");
+        return pan -> pan.length() == 8;
+    }
 }
