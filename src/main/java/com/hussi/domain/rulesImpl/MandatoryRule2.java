@@ -5,10 +5,11 @@ import com.hussi.domain.DecodedPan;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MandatoryRule2 extends MandatoryBusinessRule {
+public class MandatoryRule2 implements MandatoryBusinessRule {
     @Override
-    protected DecodedPan apply(String pan) {
+    public DecodedPan apply(DecodedPan decodedPan) {
         System.out.println("Mandatory Rule 2 is applied");
-        return null;
+        decodedPan.setMandatory2("mandatory2");
+        return decodedPan;
     }
 }

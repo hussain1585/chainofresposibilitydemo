@@ -16,12 +16,20 @@ public class DecodeUseCase extends UseCase<String, DecodedPan> {
 
     @Override
     public DecodedPan execute(String pan) {
-        for (BusinessRule rule : rules) {
-            if (rule instanceof OptionalBusinessRule op1 && op1.check(pan)
-                    || rule instanceof MandatoryBusinessRule mr) {
-                rule.apply(pan);
-            }
-        }
-        return null;
+        DecodedPan decodedPan = DecodedPan.builder().pan(pan).build();
+        System.out.println(decodedPan);
+//        for (BusinessRule rule : rules) {
+//            if (rule instanceof OptionalBusinessRule op1 && op1.check(decodedPan) ||
+//                rule instanceof MandatoryBusinessRule mr)
+//            {
+//                rule.apply(decodedPan);
+//            }
+//        }
+        rules.stream()
+                .filter(rule -> (rule instanceof OptionalBusinessRule op1 && op1.check(decodedPan)) ||
+                        (rule instanceof MandatoryBusinessRule))
+                .forEach(rule -> rule.apply(decodedPan));
+        System.out.println(decodedPan);
+        return decodedPan;
     }
 }

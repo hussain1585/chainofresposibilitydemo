@@ -8,18 +8,21 @@ import org.springframework.stereotype.Component;
 import java.util.function.Predicate;
 
 @Component
-public class OptionalRule2 extends OptionalBusinessRule {
+public class OptionalRule2 implements OptionalBusinessRule {
 
-    public Predicate<String> predicate = pan -> null != pan;
+    public Predicate<DecodedPan> predicate = decodedPan -> null != decodedPan;
 
     @Override
-    protected DecodedPan apply(String pan) {
+    public DecodedPan apply(DecodedPan decodedPan) {
         System.out.println("Optional Rule 2 is applied");
-        return null;
+        decodedPan.setOptional2("optional2");
+        return decodedPan;
     }
 
     @Override
-    protected Predicate<String> getPredicate() {
-        return predicate;
+    public boolean check(DecodedPan decodedPan) {
+        System.out.println("Optional Rule 2 check is applied");
+        decodedPan.setOptionalCheck2("optionalCheck2");
+        return predicate.test(decodedPan);
     }
 }

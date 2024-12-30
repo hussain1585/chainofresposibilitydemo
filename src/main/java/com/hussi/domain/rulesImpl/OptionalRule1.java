@@ -10,19 +10,22 @@ import java.util.function.Predicate;
 
 @Component
 @RequiredArgsConstructor
-public class OptionalRule1 extends OptionalBusinessRule {
+public class OptionalRule1 implements OptionalBusinessRule {
 
     @Qualifier("optional1")
-    private final Predicate<String> predicate;
+    private final Predicate<DecodedPan> predicate;
 
     @Override
-    protected DecodedPan apply(String pan) {
+    public DecodedPan apply(DecodedPan decodedPan) {
         System.out.println("Optional Rule 1 is applied");
-        return null;
+        decodedPan.setOptional1("optional1");
+        return decodedPan;
     }
 
     @Override
-    protected Predicate<String> getPredicate() {
-        return predicate;
+    public boolean check(DecodedPan decodedPan) {
+        System.out.println("Optional Rule 1 check is applied");
+        decodedPan.setOptionalCheck1("optionalCheck1");
+        return predicate.test(decodedPan);
     }
 }
